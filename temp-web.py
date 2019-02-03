@@ -2,11 +2,6 @@ from flask import Flask, request, render_template
 from temp_web_modules import db_to_graph
 
 app = Flask(__name__)
-'''
-@app.route('/')
-def base_form():
-    return render_template('index.html')
-'''
 @app.route('/', methods=['GET', 'POST'])
 def graphing():
     if request.method == 'GET':
