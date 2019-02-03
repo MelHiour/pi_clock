@@ -9,13 +9,14 @@ def base_form():
 '''
 @app.route('/', methods=['GET', 'POST'])
 def graphing():
-    if request.method = 'GET':
+    if request.method == 'GET':
         return render_template('index.html')
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
-    return(date_from, date_until)
-    #db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
+    result = db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
+    print(result)
+    return result
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug = True)
