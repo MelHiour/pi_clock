@@ -20,21 +20,20 @@ def graph_from_data(data):
         time.append(item[0].split('.')[0])
         inside_temp.append(float(item[1]))
         humidity.append(float(item[2]))
-        pressure.append(float(item[3])/10)
+        pressure.append(float(item[3])-700)
         outside_temp.append(float(item[4]))
 
-    line_chart = pygal.Line(x_label_rotation=-45, style=DarkSolarizedStyle)
+    line_chart = pygal.Line(x_label_rotation=-45, interpolate='hermite', style=DarkSolarizedStyle)
     line_chart.title = "Weather conditions"
     line_chart.x_labels = time
     line_chart.add('inside_temp', inside_temp)
     line_chart.add('humidity', humidity)
-    line_chart.add('pressure*10', pressure)
+    line_chart.add('pressure+700', pressure)
     line_chart.add('outside_temp', outside_temp)
     return line_chart.render_response()
 
 def db_to_graph(db_path, table_name, from_date, until_date):
-    db_data = get_db_data(db_path, table_name, from_date, until_date)
-    graph_from_data(db_data)
+    return graph_from_data(get_db_data(db_path, table_name, from_date, until_date))
 
 def main():
     db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
