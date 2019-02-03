@@ -30,11 +30,14 @@ def graph_from_data(data):
     line_chart.add('humidity', humidity)
     line_chart.add('pressure*10', pressure)
     line_chart.add('outside_temp', outside_temp)
-    line_chart.render_to_file('temp_pygal.svg')
+    return line_chart.render_response()
+
+def db_to_graph(db_path, table_name, from_date, until_date):
+    db_data = get_db_data(db_path, table_name, from_date, until_date)
+    graph_from_data(db_data)
 
 def main():
-    tupled_data = get_db_data('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
-    graph_from_data(tupled_data)
+    db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
 
 if __name__ == '__main__':
     main()
