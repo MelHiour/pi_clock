@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template
-from temp-web import db_to_graph
+from temp_web_modules import db_to_graph
 
 app = Flask(__name__)
 
@@ -11,8 +11,7 @@ def base_form():
 def graphing():
     date_from = request.form['date_from']
     date_until = request.form['date_until']
-    result = db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
-    return result 
+    db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug = True)
