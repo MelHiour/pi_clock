@@ -1,10 +1,10 @@
 [Unit]
-Description=Clock and Temperature
+Description=Web graphing tool
 After=multi-user.target
 
 [Service]
 Type=idle
-ExecStart=/root/pi_clock/piclock.py
+ExecStart=/root/pi_clock/piclock_web.py
 
 [Install]
 WantedBy=multi-user.target

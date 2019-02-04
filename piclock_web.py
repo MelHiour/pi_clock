@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from flask import Flask, request, render_template
 from piclock_web_modules import db_to_graph
 
@@ -13,4 +14,4 @@ def graphing():
     return result
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=80)
