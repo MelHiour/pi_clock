@@ -1,6 +1,7 @@
 # pi_clock
 Just a clock for Raspberry Pi with bells and whistles
 
+```
 .
 ├── piclock_display.py
 ├── piclock_poller.py
@@ -14,3 +15,4 @@ Just a clock for Raspberry Pi with bells and whistles
 ├── temp-data.db
 └── templates
     └── index.html
+```
