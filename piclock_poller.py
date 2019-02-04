@@ -2,7 +2,7 @@
 import time
 import re
 import requests
-import cPickle as pikle
+import json
 import Adafruit_DHT
 import Adafruit_BMP.BMP085 as BMP085
 
@@ -21,6 +21,6 @@ while True:
 
     print(sensors_data)
 
-    with open('/tmp/piclock_sensors', 'wb') as file:
-        pickle.dump(sensors_data, file)
+    with open('/tmp/piclock_sensors', 'w') as file:
+        json.dump(sensors_data, file)
     time.sleep(10)
