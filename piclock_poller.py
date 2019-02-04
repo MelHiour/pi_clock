@@ -21,6 +21,6 @@ while True:
 
     print(sensors_data)
 
-    with open('/tmp/piclock_sensors', 'w') as file:
+    with open('/tmp/piclock_sensors.json', 'w') as file:
         json.dump(sensors_data, file)
     time.sleep(10)
