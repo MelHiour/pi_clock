@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import time
-import cPickle as pickle
+import json
 import sqlite3
 from datetime import datetime
 
@@ -22,8 +22,8 @@ device.contrast(0x7F)
 seg.device.contrast(16)
 
 while True:
-    with open('/tmp/piclock_sensors', 'rb') as file:
-        sensors_data = pickle.load(file)
+    with open('/tmp/piclock_sensors', 'r') as file:
+        sensors_data = json.load(file)
 
     print(sensors_data)
 
