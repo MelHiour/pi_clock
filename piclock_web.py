@@ -10,7 +10,7 @@ def graphing():
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
-    result = db_to_graph('/root/temp-data/temp-data.db', 'weather', date_from, date_until)
+    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until)
     return result
 
 if __name__ == '__main__':

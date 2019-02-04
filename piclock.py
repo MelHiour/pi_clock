@@ -48,12 +48,12 @@ while True:
         seg.text = '{first:>3}T{second}'.format(second=now.strftime("%H.%M"), first=outside_temp.group(1).lstrip('+')) 
         time.sleep(2)
         
-    if datetime.timetuple(now)[4] != 14:
+    if datetime.timetuple(now)[4] != 0:
         logged = False
     else:
         if not logged:
             query = 'INSERT into weather values (?, ?, ?, ?, ?)'
             data = (str(now), str(temperature), str(humidity), str(pressure), outside_temp.group(1))
-            with sqlite3.connect('/root/temp-data/temp-data.db') as connector:
+            with sqlite3.connect('/root/pi_clock/temp-data.db') as connector:
                 connector.execute(query, data)
             logged = True
