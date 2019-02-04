@@ -2,7 +2,7 @@
 import time
 import re
 import requests
-import pickle
+import cPickle as pikle
 import Adafruit_DHT
 import Adafruit_BMP.BMP085 as BMP085
 
@@ -18,7 +18,9 @@ while True:
                     'humidity': humidity,
                     'pressure': int(pressure),
                     'outside_temp': outside_temp.group(1).lstrip('+')}
+
     print(sensors_data)
-    with open('/tmp/piclock_sensors', 'wb'):
+    
+    with open('/tmp/piclock_sensors', 'wb') as file:
         pickle.dump(sensors_date, file)
     time.sleep(10)
