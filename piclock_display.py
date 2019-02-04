@@ -1,6 +1,6 @@
 #!/usr/bin/python
 import time
-import json
+import memcache
 import sqlite3
 from datetime import datetime
 
@@ -21,11 +21,10 @@ for x in range(5):
 device.contrast(0x7F)
 seg.device.contrast(16)
 
-while True:
-    with open('/tmp/piclock_sensors.json', 'r') as file:
-        sensors_data = json.load(file)
+shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
-    print(sensors_data)
+while True:
+    sensors_data = shared.get('sensors_data')
 
     now = datetime.now()
     seg.text = '{:>4.1f}C{}'.format(sensors_data['temperature'], now.strftime("%H.%M"))
