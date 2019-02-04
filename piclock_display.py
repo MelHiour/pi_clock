@@ -22,7 +22,7 @@ device.contrast(0x7F)
 seg.device.contrast(16)
 
 while True:
-    with open('/tmp/piclock_sensors', 'r') as file:
+    with open('/tmp/piclock_sensors.json', 'r') as file:
         sensors_data = json.load(file)
 
     print(sensors_data)
