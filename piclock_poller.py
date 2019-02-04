@@ -1,12 +1,13 @@
-#!/usr/bin/python
+c#!/usr/bin/python
 import time
 import re
 import requests
-import json
+import memcache
 import Adafruit_DHT
 import Adafruit_BMP.BMP085 as BMP085
 
 sensor = BMP085.BMP085()
+shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
 while True:
     humidity, inside_temp = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
@@ -20,7 +21,5 @@ while True:
                     'outside_temp': outside_temp.group(1).lstrip('+')}
 
     print(sensors_data)
-
-    with open('/tmp/piclock_sensors.json', 'w') as file:
-        json.dump(sensors_data, file)
+    shared.set('sensors_data', sensors_data)
     time.sleep(10)
