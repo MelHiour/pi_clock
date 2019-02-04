@@ -20,7 +20,7 @@ while True:
                     'outside_temp': outside_temp.group(1).lstrip('+')}
 
     print(sensors_data)
-    
+
     with open('/tmp/piclock_sensors', 'wb') as file:
-        pickle.dump(sensors_date, file)
+        pickle.dump(sensors_data, file)
     time.sleep(10)
