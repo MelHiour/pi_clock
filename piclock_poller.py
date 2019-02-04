@@ -1,4 +1,4 @@
-c#!/usr/bin/python
+#!/usr/bin/python
 import time
 import re
 import requests
@@ -20,6 +20,5 @@ while True:
                     'pressure': int(pressure),
                     'outside_temp': outside_temp.group(1).lstrip('+')}
 
-    print(sensors_data)
     shared.set('sensors_data', sensors_data)
     time.sleep(10)
