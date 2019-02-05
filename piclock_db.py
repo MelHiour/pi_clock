@@ -14,7 +14,6 @@ def data_to_db(db_path, table_name, sensors_data):
     with sqlite3.connect(db_path) as connector:      
         connector.execute(query, data)
 
-if __name__ == '__main__':
-    shared = memcache.Client(['127.0.0.1:11211'], debug=0)
-    sensors_data = shared.get('sensors_data')
-    data_to_db('/root/pi_clock/temp-data.db', 'weather', sensors_data)
+shared = memcache.Client(['127.0.0.1:11211'], debug=0)
+sensors_data = shared.get('sensors_data')
+data_to_db('/root/pi_clock/temp-data.db', 'weather', sensors_data)
