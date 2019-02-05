@@ -13,12 +13,17 @@ while True:
     humidity, inside_temp = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
     pressure = sensor.read_pressure()*0.0075006157584566
     raw_weather = requests.get('http://wttr.in/?format=3')
-    outside_temp = re.search(' ([-+]?\d{1,2})', raw_weather.text)
+    outside_temp_raw = re.search(' ([-+]?\d{1,2})', raw_weather.text)
+
+    if outside_temp_raw:
+        outside_temp = outside_temp_raw.group(1).lstrip('+')
+    else:
+        outside_temp = 'NONE'
 
     sensors_data = {'inside_temp': inside_temp,
                     'humidity': humidity,
                     'pressure': int(pressure),
-                    'outside_temp': outside_temp.group(1).lstrip('+')}
+                    'outside_temp': outside_temp}
 
     shared.set('sensors_data', sensors_data, 300)
     time.sleep(10)
