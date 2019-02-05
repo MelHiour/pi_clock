@@ -42,15 +42,5 @@ while True:
         if sensors_data['outside_temp']:
             seg.text = '{:>3}T{}'.format(sensors_data['outside_temp'], now.strftime("%H.%M"))
             time.sleep(2)
-
-        if datetime.timetuple(now)[4] != 0:
-            logged = False
-        else:
-            if not logged:
-                query = 'INSERT into weather values (?, ?, ?, ?, ?)'
-                data = (str(now), str(sensors_data['inside_temp']), str(sensors_data['humidity']), str(sensors_data['pressure']), sensors_data['outside_temp'])
-                with sqlite3.connect('/root/pi_clock/temp-data.db') as connector:
-                    connector.execute(query, data)
-                logged = True
     else:
         seg.text ='--------'
