@@ -31,10 +31,11 @@ That's it!
     └── index.html
 ```
 
-## Requirments
+## Used
 - memcache
 - pygal
 - flask
 - Luma.LED_Matrix: 7-segment display drivers for MAX7219
 - Adafruit_DHT: Drivers for AM2302 (temperature and humidity sensor)
 - Adafruit_BMP: Drivers for BMP085 (barometric pressure and temperature)
+- sqlite3, requests, re, etc...
