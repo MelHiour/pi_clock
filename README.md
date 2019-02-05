@@ -23,12 +23,12 @@ That's it!
 ├── piclock_web.py                  # Web Flask fronted
 ├── README.md                       # You are reading this
 ├── systemd_services                # Here are some systemd service files stored
-│   ├── piclock_display.service
-│   ├── piclock_poller.service
-│   └── piclock_web.service
+│   ├── piclock_display.service         # for display
+│   ├── piclock_poller.service          # for poller
+│   └── piclock_web.service             # for web frontend
 ├── temp-data.db                    # sqlite3 database
 └── templates                       # Simple template for web page rendering
-    └── index.html
+    └── index.html                      # index.html )
 ```
 
 ## Used
