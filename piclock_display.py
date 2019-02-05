@@ -25,30 +25,32 @@ shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
 while True:
     sensors_data = shared.get('sensors_data')
-
-    now = datetime.now()
-    seg.text = '{:>4.1f}C{}'.format(sensors_data['inside_temp'], now.strftime("%H.%M"))
-    time.sleep(2)
-
-    now = datetime.now()
-    seg.text = '{:>4.1f}H{}'.format(sensors_data['humidity'], now.strftime("%H.%M"))
-    time.sleep(2)
-
-    now = datetime.now()
-    seg.text = '{:>3}P{}'.format(sensors_data['pressure'], now.strftime("%H.%M"))
-    time.sleep(2)
-
-    now = datetime.now()
-    if sensors_data['outside_temp']:
-        seg.text = '{:>3}T{}'.format(sensors_data['outside_temp'], now.strftime("%H.%M"))
+    if sensors_data:
+        now = datetime.now()
+        seg.text = '{:>4.1f}C{}'.format(sensors_data['inside_temp'], now.strftime("%H.%M"))
         time.sleep(2)
 
-    if datetime.timetuple(now)[4] != 0:
-        logged = False
+        now = datetime.now()
+        seg.text = '{:>4.1f}H{}'.format(sensors_data['humidity'], now.strftime("%H.%M"))
+        time.sleep(2)
+
+        now = datetime.now()
+        seg.text = '{:>3}P{}'.format(sensors_data['pressure'], now.strftime("%H.%M"))
+        time.sleep(2)
+
+        now = datetime.now()
+        if sensors_data['outside_temp']:
+            seg.text = '{:>3}T{}'.format(sensors_data['outside_temp'], now.strftime("%H.%M"))
+            time.sleep(2)
+
+        if datetime.timetuple(now)[4] != 0:
+            logged = False
+        else:
+            if not logged:
+                query = 'INSERT into weather values (?, ?, ?, ?, ?)'
+                data = (str(now), str(sensors_data['inside_temp']), str(sensors_data['humidity']), str(sensors_data['pressure']), sensors_data['outside_temp'])
+                with sqlite3.connect('/root/pi_clock/temp-data.db') as connector:
+                    connector.execute(query, data)
+                logged = True
     else:
-        if not logged:
-            query = 'INSERT into weather values (?, ?, ?, ?, ?)'
-            data = (str(now), str(sensors_data['inside_temp']), str(sensors_data['humidity']), str(sensors_data['pressure']), sensors_data['outside_temp'])
-            with sqlite3.connect('/root/pi_clock/temp-data.db') as connector:
-                connector.execute(query, data)
-            logged = True
+        seg.text ='--------'
