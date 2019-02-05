@@ -1,6 +1,9 @@
 # pi_clock
 Clock and home weather station based on Raspberry Pi
 
+![web_form](../master/examples/web_form_example.png)
+![pygal_graph](../master/examples/graph_example.png)
+
 ## Overview
 A "solution" consists of several modules:
 #### - piclock_poller.py
