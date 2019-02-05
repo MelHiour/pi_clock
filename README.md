@@ -11,20 +11,23 @@ This module works with simple 7-segment display. In a few words it gets data fro
 Every hour data is serialized to sqlite database for further retrospective analisys. Script executes via crond. 
 #### piclock_web.py and piclock_web_modules.py
 Very simple web frontend (flask) for graphing (pygal) and file with functions. Basically, the SQL query is constructed based on user input. Data from database is used for building a graph. 
+That's it!
 
+## Directory structure
 ```
 .
-├── piclock_db.py                           
-├── piclock_display.py
-├── piclock_poller.py
-├── piclock_web_modules.py
-├── piclock_web.py
-├── README.md
-├── systemd_services
+├── piclock_db.py                   # Periodic serialization data to DB               
+├── piclock_display.py              # Display data using 7-segment display
+├── piclock_poller.py               # Sensors polling
+├── piclock_web_modules.py          # Functions for gathering data from DB and graphing
+├── piclock_web.py                  # Web Flask fronted
+├── README.md                       # You are reading this
+├── systemd_services                # Here are some systemd service files stored
 │   ├── piclock_display.service
 │   ├── piclock_poller.service
 │   └── piclock_web.service
-├── temp-data.db
-└── templates
+├── temp-data.db                    # sqlite3 database
+└── templates                       # Simple template for web page rendering
     └── index.html
 ```
+
