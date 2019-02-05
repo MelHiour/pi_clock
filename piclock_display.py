@@ -27,7 +27,7 @@ while True:
     sensors_data = shared.get('sensors_data')
 
     now = datetime.now()
-    seg.text = '{:>4.1f}C{}'.format(sensors_data['temperature'], now.strftime("%H.%M"))
+    seg.text = '{:>4.1f}C{}'.format(sensors_data['inside_temp'], now.strftime("%H.%M"))
     time.sleep(2)
 
     now = datetime.now()
@@ -48,7 +48,7 @@ while True:
     else:
         if not logged:
             query = 'INSERT into weather values (?, ?, ?, ?, ?)'
-            data = (str(now), str(sensors_data['temperature']), str(sensors_data['humidity']), str(sensors_data['pressure']), sensors_data['outside_temp'])
+            data = (str(now), str(sensors_data['inside_temp']), str(sensors_data['humidity']), str(sensors_data['pressure']), sensors_data['outside_temp'])
             with sqlite3.connect('/root/pi_clock/temp-data.db') as connector:
                 connector.execute(query, data)
             logged = True

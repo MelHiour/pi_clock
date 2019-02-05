@@ -1,0 +1,11 @@
+[Unit]
+Description=pi_clock Disaplay data
+After=piclock_poller.service
+
+[Service]
+Type=idle
+ExecStart=/root/pi_clock/piclock_display.py
+
+[Install]
+WantedBy=multi-user.target
+Wants=piclock_poller.service

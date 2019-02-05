@@ -20,5 +20,5 @@ while True:
                     'pressure': int(pressure),
                     'outside_temp': outside_temp.group(1).lstrip('+')}
 
-    shared.set('sensors_data', sensors_data)
+    shared.set('sensors_data', sensors_data, 300)
     time.sleep(10)
