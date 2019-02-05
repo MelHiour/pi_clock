@@ -5,6 +5,10 @@ After=piclock_poller.service
 [Service]
 Type=idle
 ExecStart=/root/pi_clock/piclock_display.py
+WatchdogSec=30s
+Restart=on-failure
+StartLimitInterval=4min
+StartLimitBurst=3
 
 [Install]
 WantedBy=multi-user.target
