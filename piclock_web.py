@@ -1,6 +1,7 @@
 #!/usr/bin/python3
+import os
 from datetime import datetime, timedelta
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
 from piclock_web_modules import db_to_graph
 
 app = Flask(__name__)
@@ -22,5 +23,9 @@ def graphing_today():
     result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until)
     return result
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                          'favicon.ico',mimetype='image/vnd.microsoft.icon')
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
