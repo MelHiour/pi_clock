@@ -2,9 +2,13 @@
 import os
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, send_from_directory
+from flask.ext.cache import Cache
 from piclock_web_modules import db_to_graph
 
 app = Flask(__name__)
+app.config['CACHE_TYPE'] = 'simple'
+app.cache = Cache(app)
+
 @app.route('/', methods=['GET', 'POST'])
 def graphing():
     if request.method == 'GET':
@@ -16,6 +20,7 @@ def graphing():
     return result
 
 @app.route('/today')
+@app.cache.cached(timeout=3600)
 def graphing_today():
     now = datetime.now()
     date_from = now.strftime("%Y-%m-%d")
