@@ -11,7 +11,7 @@ def data_to_db(db_path, table_name, sensors_data):
             str(sensors_data['humidity']),
             str(sensors_data['pressure']),
             sensors_data['outside_temp'])
-    with sqlite3.connect(db_path) as connector:      
+    with sqlite3.connect(db_path) as connector:
         connector.execute(query, data)
 
 shared = memcache.Client(['127.0.0.1:11211'], debug=0)
