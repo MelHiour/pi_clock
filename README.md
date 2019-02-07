@@ -15,7 +15,11 @@ This module works with simple 7-segment display. In a few words, it gets data fr
 Every hour data is serialized to sqlite database for further retrospective analisys. Script executes via crond.
 The DB schema is very simple.
 
-    CREATE TABLE weather (date text not NULL primary key, inside_temp text, humidity text, pressure text, outside_temp text);
+    CREATE TABLE weather (date text not NULL primary key,
+                          inside_temp text,
+                          humidity text,
+                          pressure text,
+                          outside_temp text);
 #### - piclock_web(_modules).py
 Very simple web frontend (flask) for graphing (pygal). Basically, the SQL query is constructed based on user input. Data from database is used for building a graph. 
 That's it!
