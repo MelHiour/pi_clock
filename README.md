@@ -26,6 +26,9 @@ That's it!
 ├── piclock_web_modules.py          # Functions for gathering data from DB and graphing
 ├── piclock_web.py                  # Web Flask fronted
 ├── README.md                       # You are reading this
+├── static                          # Static content
+│   ├── apple-touch-icon.png            # favicon for apple
+│   └── favicon.ico                     # favicon for "normal" devices...
 ├── systemd_services                # Here are some systemd service files stored
 │   ├── piclock_display.service         # for display
 │   ├── piclock_poller.service          # for poller
