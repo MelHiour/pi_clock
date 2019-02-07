@@ -5,6 +5,8 @@ from flask import Flask, request, render_template, send_from_directory
 from flask_caching import Cache
 from piclock_web_modules import db_to_graph
 
+shared = memcache.Client(['127.0.0.1:11211'], debug=0)
+
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 cache.init_app(app)
@@ -12,7 +14,12 @@ cache.init_app(app)
 @app.route('/', methods=['GET', 'POST'])
 def graphing():
     if request.method == 'GET':
-        return render_template('index.html')
+        sensors_data = shared.get('sensors_data')
+        return render_template('index.html',
+                                inside_temp = str(sensors_data['inside_temp']),
+                                humidity = str(sensors_data['humidity']),
+                                pressure = str(sensors_data['pressure']),
+                                outside_temp = str(sensors_data['outside_temp']))
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
