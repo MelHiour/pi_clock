@@ -11,10 +11,12 @@
 <div class="container">
   <h1>Graphing tool</h1>
   <p>Current values are:</p>
-      <li>Inside: {{inside_temp|round}}C
+      <li>Inside: {{inside_temp|round}}ºC
       <li>Humidity: {{humidity|round}}%
       <li>Pressure: {{pressure}}mmHg
-      <li>Outside: {{outside_temp}}C
+      <li>Outside: {{outside_temp}}ºC
+<br>
+<br>
 <form method="POST">
 	<p>Please specify the timerange for graphing or just take a look at <a href="/today">today's graph</a>.</p><br>
     From <input name="date_from" placeholder='YYYY-MM-DD HH:MM'> to <input name="date_until" placeholder='YYYY-MM-DD HH:MM'> <input type="submit" value="Get graph!">

@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import memcache
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, send_from_directory
 from flask_caching import Cache
@@ -16,10 +17,10 @@ def graphing():
     if request.method == 'GET':
         sensors_data = shared.get('sensors_data')
         return render_template('index.html',
-                                inside_temp = str(sensors_data['inside_temp']),
-                                humidity = str(sensors_data['humidity']),
-                                pressure = str(sensors_data['pressure']),
-                                outside_temp = str(sensors_data['outside_temp']))
+                                inside_temp = sensors_data['inside_temp'],
+                                humidity = sensors_data['humidity'],
+                                pressure = sensors_data['pressure'],
+                                outside_temp = sensors_data['outside_temp'])
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
