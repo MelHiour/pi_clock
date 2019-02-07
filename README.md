@@ -12,7 +12,10 @@ This is the core module which poles several plugged sensors (temperature, humidi
 #### - piclock_display.py
 This module works with simple 7-segment display. In a few words, it gets data from memcache and represent it for end-users (me and my family;). It also runs using systemd service.
 #### - piclock_db.py
-Every hour data is serialized to sqlite database for further retrospective analisys. Script executes via crond. 
+Every hour data is serialized to sqlite database for further retrospective analisys. Script executes via crond.
+The DB schema is very simple.
+
+    CREATE TABLE weather (date text not NULL primary key, inside_temp text, humidity text, pressure text, outside_temp text);
 #### - piclock_web(_modules).py
 Very simple web frontend (flask) for graphing (pygal). Basically, the SQL query is constructed based on user input. Data from database is used for building a graph. 
 That's it!
