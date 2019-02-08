@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import time
 import memcache
-import sqlite3
 from datetime import datetime
 
 from luma.led_matrix.device import max7219
