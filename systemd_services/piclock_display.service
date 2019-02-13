@@ -4,6 +4,8 @@ Description=pi_clock Disaplay data
 [Service]
 Type=idle
 ExecStart=/root/pi_clock/piclock_display.py
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
