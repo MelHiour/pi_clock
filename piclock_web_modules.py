@@ -5,7 +5,7 @@ import sqlite3
 def get_db_data(db_path, table_name, from_date, until_date):
     with sqlite3.connect(db_path) as connection:
         cursor = connection.cursor()
-        cursor.execute("select * from {} where date between '{}' and '{}'".format(table_name, from_date, until_date))
+        cursor.execute("select * from {} where date between '{}' and '{}'".format(table_name, from_date), until_date))
         result = cursor.fetchall()
     return result
 
@@ -22,7 +22,7 @@ def graph_from_data(data):
         humidity.append(float(item[2]))
         pressure.append(float(item[3])-700)
         if item[4] == 'NA':
-            pass
+            outside_temp.append(None)
         else:
             outside_temp.append(float(item[4]))
 
@@ -32,7 +32,7 @@ def graph_from_data(data):
     line_chart.add('inside_temp', inside_temp)
     line_chart.add('humidity', humidity)
     line_chart.add('pressure+700', pressure)
-    line_chart.add('outside_temp', outside_temp)
+    line_chart.add('outside_temp', outside_temp, allow_interruptions=True)
     return line_chart.render_response()
 
 def db_to_graph(db_path, table_name, from_date, until_date):
