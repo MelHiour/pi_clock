@@ -21,7 +21,10 @@ def graph_from_data(data):
         inside_temp.append(float(item[1]))
         humidity.append(float(item[2]))
         pressure.append(float(item[3])-700)
-        outside_temp.append(float(item[4]))
+        if item[4] == 'NA':
+            pass
+        else:
+            outside_temp.append(float(item[4]))
 
     line_chart = pygal.Line(x_label_rotation=-45, interpolate='hermite', style=DarkSolarizedStyle)
     line_chart.title = "Weather conditions"
