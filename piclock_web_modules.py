@@ -5,7 +5,7 @@ import sqlite3
 def get_db_data(db_path, table_name, from_date, until_date):
     with sqlite3.connect(db_path) as connection:
         cursor = connection.cursor()
-        cursor.execute("select * from {} where date between '{}' and '{}'".format(table_name, from_date), until_date))
+        cursor.execute("select * from {} where date between '{}' and '{}'".format(table_name, from_date, until_date))
         result = cursor.fetchall()
     return result
 
@@ -29,10 +29,10 @@ def graph_from_data(data):
     line_chart = pygal.Line(x_label_rotation=-45, interpolate='hermite', style=DarkSolarizedStyle)
     line_chart.title = "Weather conditions"
     line_chart.x_labels = time
-    line_chart.add('inside_temp', inside_temp)
-    line_chart.add('humidity', humidity)
-    line_chart.add('pressure+700', pressure)
-    line_chart.add('outside_temp', outside_temp, allow_interruptions=True)
+    line_chart.add('inside_temp', inside_temp, show_dots=False)
+    line_chart.add('humidity', humidity, show_dots=False)
+    line_chart.add('pressure+700', pressure, show_dots=False)
+    line_chart.add('outside_temp', outside_temp, show_dots=False, allow_interruptions=True)
     return line_chart.render_response()
 
 def db_to_graph(db_path, table_name, from_date, until_date):
