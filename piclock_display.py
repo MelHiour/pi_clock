@@ -21,7 +21,7 @@ shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
 while True:
     now = datetime.now()
-    if now.timetuple()[3] in range(10, 19):
+    if now.timetuple()[3] in range(10, 18):
         device.contrast(0x7F)
     else:
         seg.device.contrast(16)
