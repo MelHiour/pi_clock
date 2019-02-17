@@ -17,12 +17,15 @@ for x in range(5):
         seg.device.contrast(intensity * 16)
         time.sleep(0.1)
 
-device.contrast(0x7F)
-seg.device.contrast(16)
-
 shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
 while True:
+    now = datetime.now()
+    if now.timetuple()[3] in range(10, 19):
+        device.contrast(0x7F)
+    else:
+        seg.device.contrast(16)
+
     sensors_data = shared.get('sensors_data')
     if sensors_data:
         now = datetime.now()
