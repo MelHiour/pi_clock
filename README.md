@@ -55,4 +55,5 @@ That's it!
 - [Luma.LED_Matrix](https://github.com/rm-hull/luma.led_matrix): 7-segment display drivers for MAX7219
 - [Adafruit_DHT](https://github.com/adafruit/Adafruit_Python_DHT): Drivers for AM2302 (temperature and humidity sensor)
 - [Adafruit_BMP](https://github.com/adafruit/Adafruit-BMP085-Library): Drivers for BMP085 (barometric pressure and temperature)
+- sysdmanager
 - sqlite3, requests, re, etc...
