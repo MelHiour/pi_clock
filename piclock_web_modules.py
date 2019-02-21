@@ -46,7 +46,8 @@ def graph_from_data(data, dots, minor_labels):
     return line_chart.render_response()
 
 def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_labels = True):
-    return graph_from_data(get_db_data(db_path, table_name, from_date, until_date), dots, minor_labels)
+    data = get_db_data(db_path, table_name, from_date, until_date)
+    return graph_from_data(data, dots, minor_labels)
 
 def service_control(service, action):
     manager = SystemdManager()
@@ -60,7 +61,10 @@ def service_control(service, action):
         return 'Only up/down are supported'
     
 def main():
-    db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
+    db_to_graph('/root/temp-data/temp-data.db',
+                'weather',
+                '2019-02-02',
+                '2019-02-03')
 
 if __name__ == '__main__':
     main()
