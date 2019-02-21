@@ -3,6 +3,7 @@ Just clock and home weather station based on Raspberry Pi.
 
 ![device](../master/examples/animated.GIF)
 ![web_form](../master/examples/web_form_example.png)
+![web_form_systyemd](../master/examples/web_form_example_systemd.png)
 ![pygal_graph](../master/examples/graph_example.png)
 
 ## Overview
