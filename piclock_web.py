@@ -36,6 +36,13 @@ def graphing_today():
     result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False)
     return result
 
+@app.route('<service>/<action>', methods=['GET', 'POST'])
+def systemd_control:
+    if request.method == 'GET':
+        return render_template(TEMPLATE)
+    if request.method == 'POST':
+        service_control(service, action)
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
@@ -45,5 +52,6 @@ def favicon():
 def favicon_iphone():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                           'apple-touch-icon.png')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
