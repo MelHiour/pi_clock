@@ -51,11 +51,11 @@ def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_l
 def service_control(service, action):
     manager = SystemdManager()
     if action == up:
-        manager.start_unit("{}.service".format(service))
-        return "{}.service has been started".format(service))
+        manager.start_unit('{}.service'.format(service))
+        return "{}.service has been started".format(service)
     elif action == down:
-        manager.stop_unit("{}.service".format(service))
-        return "{}.service has been stopped".format(service))
+        manager.stop_unit('{}.service'.format(service))
+        return '{}.service has been stopped'.format(service)
     else:
         return 'Only up/down are supported'
     
