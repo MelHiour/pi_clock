@@ -36,12 +36,9 @@ def graphing_today():
     result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False)
     return result
 
-@app.route('<service>/<action>', methods=['GET', 'POST'])
+@app.route('<service>/<action>')
 def systemd_control:
-    if request.method == 'GET':
-        return render_template('systemd_controll.html')
-    if request.method == 'POST':
-        return service_control(service, action)
+    return service_control(service, action)
 
 @app.route('/favicon.ico')
 def favicon():
