@@ -11,6 +11,8 @@ A "solution" consists of several modules:
 This is the core module which poles several plugged sensors (temperature, humidity, pressure) and grab data from Web (https://wttr.in/) for weather forecast. Script caches the data in memory using memcache. Runs via systemd service.
 #### - piclock_display.py
 This module works with simple 7-segment display. In a few words, it gets data from memcache and represent it for end-users (me and my family;). It also runs using systemd service.
+#### - piclock_clear.py
+Just clears display by sending four whitespaces (    ) to display. Executes when piclock_display stops by systemd via ExecStopPost= directive.
 #### - piclock_db.py
 Every hour data is serialized to sqlite database for further retrospective analisys. Script executes via crond.
 The DB schema is very simple.
@@ -27,6 +29,7 @@ That's it!
 ## Directory structure
 ```
 .
+├── piclock_clear.py                # Clears display    
 ├── piclock_db.py                   # Periodic serialization data to DB               
 ├── piclock_display.py              # Display data using 7-segment display
 ├── piclock_poller.py               # Sensors polling
