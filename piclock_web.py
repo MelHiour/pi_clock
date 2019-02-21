@@ -36,7 +36,7 @@ def graphing_today():
     result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False)
     return result
 
-@app.route('<service>/<action>')
+@app.route('/<service>/<action>')
 def systemd_control:
     return service_control(service, action)
 
