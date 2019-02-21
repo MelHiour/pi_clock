@@ -38,7 +38,7 @@ def graphing_today():
 
 @app.route('/<service>.<action>')
 def systemd_control(service, action):
-    return service_control(service, action)
+    return service_control('piclock_'+service, action)
 
 @app.route('/favicon.ico')
 def favicon():
