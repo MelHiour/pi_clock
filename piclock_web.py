@@ -39,9 +39,9 @@ def graphing_today():
 @app.route('<service>/<action>', methods=['GET', 'POST'])
 def systemd_control:
     if request.method == 'GET':
-        return render_template(TEMPLATE)
+        return render_template('systemd_controll.html')
     if request.method == 'POST':
-        service_control(service, action)
+        return service_control(service, action)
 
 @app.route('/favicon.ico')
 def favicon():
