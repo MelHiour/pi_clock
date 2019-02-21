@@ -4,7 +4,7 @@ import memcache
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, send_from_directory
 from flask_caching import Cache
-from piclock_web_modules import db_to_graph
+from piclock_web_modules import db_to_graph, service_control
 
 shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
