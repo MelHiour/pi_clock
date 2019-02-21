@@ -4,7 +4,7 @@ import memcache
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, send_from_directory
 from flask_caching import Cache
-from piclock_web_modules import db_to_graph
+from piclock_web_modules import db_to_graph, service_control
 
 shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
@@ -36,6 +36,10 @@ def graphing_today():
     result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False)
     return result
 
+@app.route('/<service>/<action>')
+def systemd_control:
+    return service_control(service, action)
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
@@ -45,5 +49,6 @@ def favicon():
 def favicon_iphone():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                           'apple-touch-icon.png')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)

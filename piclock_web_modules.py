@@ -1,6 +1,7 @@
 import pygal
-from pygal.style import DarkSolarizedStyle
 import sqlite3
+from pygal.style import DarkSolarizedStyle
+from sysdmanager import SystemdManager
 
 def get_db_data(db_path, table_name, from_date, until_date):
     with sqlite3.connect(db_path) as connection:
@@ -47,6 +48,17 @@ def graph_from_data(data, dots, minor_labels):
 def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_labels = True):
     return graph_from_data(get_db_data(db_path, table_name, from_date, until_date), dots, minor_labels)
 
+def service_control(service, action):
+    manager = SystemdManager()
+    if action == up:
+        manager.start_unit('{}.service'.format(service))
+        return "{}.service has been started".format(service)
+    elif action == down:
+        manager.stop_unit('{}.service'.format(service))
+        return '{}.service has been stopped'.format(service)
+    else:
+        return 'Only up/down are supported'
+    
 def main():
     db_to_graph('/root/temp-data/temp-data.db', 'weather', '2019-02-02', '2019-02-03')
 
