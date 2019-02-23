@@ -20,6 +20,7 @@ while True:
         seg.device.contrast(16)
 
     sensors_data = shared.get('sensors_data')
+
     if sensors_data:
         now = datetime.now()
         seg.text = '{:>4.1f}C{}'.format(sensors_data['inside_temp'], now.strftime("%H.%M"))
