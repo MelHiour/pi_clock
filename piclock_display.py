@@ -41,8 +41,8 @@ while True:
         time.sleep(2)
 
         now = datetime.now()
-        if sensors_data['outside_temp']:
-            seg.text = '{:>3}T{}'.format(sensors_data['outside_temp'], now.strftime("%H.%M"))
-            time.sleep(2)
+        seg.text = '{:>3}T{}'.format(sensors_data['outside_temp'], now.strftime("%H.%M"))
+        time.sleep(2)
+
     else:
         seg.text ='--------'
