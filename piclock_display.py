@@ -10,13 +10,6 @@ from luma.core.virtual import viewport, sevensegment
 serial = spi(port=0, device=0, gpio=noop())
 device = max7219(serial, cascaded=1)
 seg = sevensegment(device)
-
-seg.text = 'LOVECECA'
-for x in range(5):
-    for intensity in range(16):
-        seg.device.contrast(intensity * 16)
-        time.sleep(0.1)
-
 shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
 while True:
@@ -45,4 +38,7 @@ while True:
         time.sleep(2)
 
     else:
-        seg.text ='--------'
+        seg.text = 'LOVECECA'
+            for intensity in range(16):
+                seg.device.contrast(intensity * 16)
+                time.sleep(0.1)
