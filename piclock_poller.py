@@ -15,8 +15,11 @@ ccs =  CCS811()
 while True:
     humidity, inside_temp = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
     pressure = sensor.read_pressure()*0.0075006157584566
-    co2 = ccs.geteCO2()
-    tvoc = ccs.getTVOC()
+
+    if ccs.available():
+        if not ccs.readData():
+            co2 = ccs.geteCO2()
+            tvoc = ccs.getTVOC()
 
     try:
         raw_weather = requests.get('http://wttr.in/?format=3')
