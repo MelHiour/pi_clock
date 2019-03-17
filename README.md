@@ -25,7 +25,7 @@ The DB schema is very simple.
                           outside_temp text,
                           co2 text,
                           tvoc text);
-                          
+
 #### - piclock_web(_modules).py
 Very simple web frontend (flask) for graphing (pygal). Basically, the SQL query is constructed based on user input. Data from database is used for building a graph. We have a quick link for today's graph as well as an ability to set custom timerange. Moreover, there is a hidden function to controll systemd services via web frontend by stating the service name and state in URL like http://pi.pc.hi/display.down or http://pi.pc.hi/poller.up.
 
@@ -60,5 +60,6 @@ That's it!
 - [Luma.LED_Matrix](https://github.com/rm-hull/luma.led_matrix): 7-segment display drivers for MAX7219
 - [Adafruit_DHT](https://github.com/adafruit/Adafruit_Python_DHT): Drivers for AM2302 (temperature and humidity sensor)
 - [Adafruit_BMP](https://github.com/adafruit/Adafruit-BMP085-Library): Drivers for BMP085 (barometric pressure and temperature)
+- [Adafruit_CCS811](https://github.com/adafruit/Adafruit_CCS811): Drivers for CCS811 (air quality sensor (CO2, TVOC))
 - [systemd-manager](https://github.com/emlid/systemd-manager)
 - sqlite3, requests, re, etc...
