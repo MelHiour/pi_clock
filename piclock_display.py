@@ -38,6 +38,14 @@ while True:
         seg.text = '{:>3}T{}'.format(sensors_data['outside_temp'], now.strftime("%H.%M"))
         time.sleep(2)
 
+        now = datetime.now()
+        seg.text = '{:>3}T{}'.format('CO2', now.strftime("%H.%M"))
+        time.sleep(1)
+
+        now = datetime.now()
+        seg.text = '{:>}T{}'.format(sensors_data['co2'], now.strftime("%H.%M"))
+        time.sleep(1)
+
     else:
         seg.text = 'LOVECECA'
         for intensity in range(16):
