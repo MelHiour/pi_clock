@@ -39,19 +39,19 @@ while True:
         time.sleep(2)
 
         now = datetime.now()
-        seg.text = '{}{}'.format('CO2 ', now.strftime("%H.%M"))
+        seg.text = '{:>4}{}'.format('CO2 ', now.strftime("%H.%M"))
         time.sleep(2)
 
         now = datetime.now()
-        seg.text = '{:>}{}'.format(sensors_data['co2'], now.strftime("%H.%M"))
+        seg.text = '{:>4}{}'.format(sensors_data['co2'], now.strftime("%H.%M"))
         time.sleep(2)
 
         now = datetime.now()
-        seg.text = '{}{}'.format('TVOC', now.strftime("%H.%M"))
+        seg.text = '{:>4}{}'.format('TVOC', now.strftime("%H.%M"))
         time.sleep(2)
 
         now = datetime.now()
-        seg.text = '{:>}{}'.format(sensors_data['tvocs'], now.strftime("%H.%M"))
+        seg.text = '{:>4}{}'.format(sensors_data['tvoc'], now.strftime("%H.%M"))
         time.sleep(2)
     else:
         seg.text = 'LOVECECA'
