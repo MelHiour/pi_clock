@@ -39,13 +39,20 @@ while True:
         time.sleep(2)
 
         now = datetime.now()
-        seg.text = '{:>3}T{}'.format('CO2', now.strftime("%H.%M"))
+        seg.text = '{}{}'.format('CO2 ', now.strftime("%H.%M"))
         time.sleep(2)
 
         now = datetime.now()
         seg.text = '{:>}{}'.format(sensors_data['co2'], now.strftime("%H.%M"))
         time.sleep(2)
 
+        now = datetime.now()
+        seg.text = '{}{}'.format('TVOC', now.strftime("%H.%M"))
+        time.sleep(2)
+
+        now = datetime.now()
+        seg.text = '{:>}{}'.format(sensors_data['tvocs'], now.strftime("%H.%M"))
+        time.sleep(2)
     else:
         seg.text = 'LOVECECA'
         for intensity in range(16):
