@@ -10,7 +10,9 @@ def data_to_db(db_path, table_name, sensors_data):
             str(sensors_data['inside_temp']),
             str(sensors_data['humidity']),
             str(sensors_data['pressure']),
-            str(sensors_data['outside_temp']))
+            str(sensors_data['outside_temp']),
+            str(sensors_data['co2']),
+            str(sensors_data['tvoc']))
     with sqlite3.connect(db_path) as connector:
         connector.execute(query, data)
 
