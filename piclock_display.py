@@ -40,11 +40,11 @@ while True:
 
         now = datetime.now()
         seg.text = '{:>3}T{}'.format('CO2', now.strftime("%H.%M"))
-        time.sleep(1)
+        time.sleep(2)
 
         now = datetime.now()
-        seg.text = '{:>}T{}'.format(sensors_data['co2'], now.strftime("%H.%M"))
-        time.sleep(1)
+        seg.text = '{:>}{}'.format(sensors_data['co2'], now.strftime("%H.%M"))
+        time.sleep(2)
 
     else:
         seg.text = 'LOVECECA'
