@@ -1,5 +1,5 @@
 # pi_clock
-Just clock and home weather station based on Raspberry Pi.
+Just clock, home weather station and air quality monitoring tool based on Raspberry Pi.
 
 ![device](../master/examples/animated.GIF)
 ![web_form](../master/examples/web_form_example.png)
