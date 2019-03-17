@@ -5,7 +5,7 @@ from datetime import datetime
 
 def data_to_db(db_path, table_name, sensors_data):
     now = datetime.now()
-    query = 'INSERT into {} values (?, ?, ?, ?, ?)'.format(table_name)
+    query = 'INSERT into {} values (?, ?, ?, ?, ?, ?, ?)'.format(table_name)
     data = (str(now),
             str(sensors_data['inside_temp']),
             str(sensors_data['humidity']),

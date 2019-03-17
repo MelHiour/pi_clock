@@ -40,6 +40,6 @@ while True:
 
     else:
         seg.text = 'LOVECECA'
-            for intensity in range(16):
-                seg.device.contrast(intensity * 16)
-                time.sleep(0.1)
+        for intensity in range(16):
+            seg.device.contrast(intensity * 16)
+            time.sleep(0.1)
