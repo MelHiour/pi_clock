@@ -20,7 +20,9 @@ def graphing():
                                 inside_temp = sensors_data['inside_temp'],
                                 humidity = sensors_data['humidity'],
                                 pressure = sensors_data['pressure'],
-                                outside_temp = sensors_data['outside_temp'])
+                                outside_temp = sensors_data['outside_temp'],
+                                co2 = sensors_data['co2'],
+                                tvoc = sensors_data['tvoc'])
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
