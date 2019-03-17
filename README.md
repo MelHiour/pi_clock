@@ -9,7 +9,7 @@ Just clock and home weather station based on Raspberry Pi.
 ## Overview
 A "solution" consists of several modules:
 #### - piclock_poller.py
-This is the core module which poles several plugged sensors (temperature, humidity, pressure) and grab data from Web (https://wttr.in/) for weather forecast. Script caches the data in memory using memcache. Runs via systemd service.
+This is the core module which poles several plugged sensors (temperature, humidity, pressure, air quality) and grab data from Web (https://wttr.in/) for weather forecast. Script caches the data in memory using memcache. Runs via systemd service.
 #### - piclock_display.py
 This module works with simple 7-segment display. In a few words, it gets data from memcache and represent it for end-users (me and my family;). It also runs using systemd service.
 #### - piclock_clear.py
