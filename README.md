@@ -22,7 +22,10 @@ The DB schema is very simple.
                           inside_temp text,
                           humidity text,
                           pressure text,
-                          outside_temp text);
+                          outside_temp text,
+                          co2 text,
+                          tvoc text);
+                          
 #### - piclock_web(_modules).py
 Very simple web frontend (flask) for graphing (pygal). Basically, the SQL query is constructed based on user input. Data from database is used for building a graph. We have a quick link for today's graph as well as an ability to set custom timerange. Moreover, there is a hidden function to controll systemd services via web frontend by stating the service name and state in URL like http://pi.pc.hi/display.down or http://pi.pc.hi/poller.up.
 
