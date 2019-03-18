@@ -44,7 +44,7 @@ def systemd_control(service, action):
 
 @app.route('/stats')
 def systemd_stats():
-    service_stats()
+    return service_stats()
 
 @app.route('/favicon.ico')
 def favicon():
