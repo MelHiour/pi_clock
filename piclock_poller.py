@@ -16,16 +16,18 @@ while True:
     humidity, inside_temp = Adafruit_DHT.read_retry(Adafruit_DHT.AM2302, 17)
     pressure = sensor.read_pressure()*0.0075006157584566
 
-    if ccs.available():
-        if not ccs.readData():
-            co2 = ccs.geteCO2()
-            tvoc = ccs.getTVOC()
-
     try:
+        if ccs.available():
+            if not ccs.readData():
+                if len(str(ccs.geteCO2())) <= 4 and len(str(ccs.geteTVOC())) <= 4:
+                    co2 = ccs.geteCO2()
+                    tvoc = ccs.getTVOC()
         raw_weather = requests.get('http://wttr.in/?format=3')
         outside_temp_raw = weather_regex.search(raw_weather.text)
     except requests.exceptions.ConnectionError:
         outside_temp_raw = False
+    except IOError:
+        pass
     finally:
         if outside_temp_raw:
             outside_temp = outside_temp_raw.group(1).lstrip('+')
