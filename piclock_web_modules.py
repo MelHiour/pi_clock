@@ -1,5 +1,6 @@
 import pygal
 import sqlite3
+import subprocess
 from pygal.style import DarkSolarizedStyle
 from sysdmanager import SystemdManager
 
@@ -36,13 +37,13 @@ def graph_from_data(data, dots, minor_labels):
                             style=DarkSolarizedStyle)
 
     line_chart.title = "Weather conditions"
-    
+
     line_chart.x_labels = time
     line_chart.add('inside_temp', inside_temp)
     line_chart.add('humidity', humidity)
     line_chart.add('pressure+700', pressure)
     line_chart.add('outside_temp', outside_temp)
-   
+
     return line_chart.render_response()
 
 def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_labels = True):
@@ -59,7 +60,13 @@ def service_control(service, action):
         return '{}.service has been stopped'.format(service)
     else:
         return 'Only up/down are supported'
-    
+
+def service_stats():
+    result = subprocess.run('systemctl status piclock_*.service | egrep ●\|Active',
+                            shell=True,
+                            stdout=subprocess.PIPE)
+    return result.decode('utf-8')
+
 def main():
     db_to_graph('/root/temp-data/temp-data.db',
                 'weather',
