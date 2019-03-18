@@ -3,6 +3,8 @@ Description=pi_clock Disaplay data
 
 [Service]
 Type=idle
+Restart=always
+RestartSec=10
 ExecStart=/root/pi_clock/piclock_display.py
 ExecStopPost=/root/pi_clock/piclock_clear.py
 

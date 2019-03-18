@@ -4,8 +4,9 @@ After=multi-user.target
 
 [Service]
 Type=idle
+Restart=always
+RestartSec=10
 ExecStart=/root/pi_clock/piclock_web.py
-Restart=on-failure
-RestartSec=5s
+
 [Install]
 WantedBy=multi-user.target
