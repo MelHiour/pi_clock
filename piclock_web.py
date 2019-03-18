@@ -4,7 +4,7 @@ import memcache
 from datetime import datetime, timedelta
 from flask import Flask, request, render_template, send_from_directory
 from flask_caching import Cache
-from piclock_web_modules import db_to_graph, service_control
+from piclock_web_modules import db_to_graph, service_control, service_stats
 
 shared = memcache.Client(['127.0.0.1:11211'], debug=0)
 
@@ -41,6 +41,10 @@ def graphing_today():
 @app.route('/<service>.<action>')
 def systemd_control(service, action):
     return service_control('piclock_'+service, action)
+
+@app.route('/stats')
+def systemd_stats():
+    service_stats()
 
 @app.route('/favicon.ico')
 def favicon():

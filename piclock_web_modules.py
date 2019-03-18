@@ -65,7 +65,7 @@ def service_stats():
     result = subprocess.run('systemctl status piclock_*.service | egrep ●\|Active',
                             shell=True,
                             stdout=subprocess.PIPE)
-    return result.decode('utf-8')
+    return result.stdout.decode('utf-8')
 
 def main():
     db_to_graph('/root/temp-data/temp-data.db',
