@@ -26,7 +26,12 @@ def graphing():
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
-    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, minor_labels = False, air = request.form.get('air'))
+    result = db_to_graph('/root/pi_clock/temp-data.db',
+                         'weather',
+                         date_from,
+                         date_until,
+                         minor_labels = False,
+                         air = request.form.get('air'))
     return result
 
 @app.route('/today')
@@ -35,7 +40,12 @@ def graphing_today():
     now = datetime.now()
     date_from = now.strftime("%Y-%m-%d")
     date_until = (now + timedelta(days=1)).strftime("%Y-%m-%d")
-    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False, air = False)
+    result = db_to_graph('/root/pi_clock/temp-data.db',
+                         'weather',
+                         date_from,
+                         date_until,
+                         dots = False,
+                         air = False)
     return result
 
 @app.route('/<service>.<action>')
@@ -49,12 +59,13 @@ def systemd_stats():
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
-                          'favicon.ico',mimetype='image/vnd.microsoft.icon')
+                               'favicon.ico',
+                               mimetype='image/vnd.microsoft.icon')
 
 @app.route('/apple-touch-icon.png')
 def favicon_iphone():
     return send_from_directory(os.path.join(app.root_path, 'static'),
-                          'apple-touch-icon.png')
+                               'apple-touch-icon.png')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80)
