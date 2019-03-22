@@ -26,7 +26,7 @@ def graphing():
     else:
         date_from = request.form['date_from']
         date_until = request.form['date_until']
-    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, minor_labels = False)
+    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, minor_labels = False, air = request.form.get('air'))
     return result
 
 @app.route('/today')
@@ -35,7 +35,7 @@ def graphing_today():
     now = datetime.now()
     date_from = now.strftime("%Y-%m-%d")
     date_until = (now + timedelta(days=1)).strftime("%Y-%m-%d")
-    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False)
+    result = db_to_graph('/root/pi_clock/temp-data.db', 'weather', date_from, date_until, dots = False, air = False)
     return result
 
 @app.route('/<service>.<action>')
