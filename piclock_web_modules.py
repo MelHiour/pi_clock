@@ -69,7 +69,7 @@ def service_control(service, action):
         return 'Only up/down are supported'
 
 def service_stats():
-    result = subprocess.run('systemctl status piclock_*.service',
+    result = subprocess.run('systemctl status piclock_*.service | grep "●\|Active"',
                             shell=True,
                             stdout=subprocess.PIPE)
     return result.stdout.decode('utf-8')
