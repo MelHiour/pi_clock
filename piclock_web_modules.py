@@ -53,8 +53,17 @@ def graph_from_data(data, dots, minor_labels, air):
         line_chart.add('TVOC', tvoc)
     return line_chart.render_response()
 
-def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_labels = True, air = False):
-    data = get_db_data(db_path, table_name, from_date, until_date)
+def db_to_graph(db_path,
+                table_name,
+                from_date,
+                until_date,
+                dots = True,
+                minor_labels = True,
+                air = False):
+    data = get_db_data(db_path,
+                       table_name,
+                       from_date,
+                       until_date)
     return graph_from_data(data, dots, minor_labels, air)
 
 def service_control(service, action):
@@ -69,8 +78,8 @@ def service_control(service, action):
         return 'Only up/down are supported'
 
 def service_stats():
-    result = subprocess.check_output('systemctl status piclock_*.service | grep ".*\.service -\|Active"',
-                                    shell=True)
+    command = 'systemctl status piclock_*.service | grep "● .*\.service -\|   Active:" | grep -v "─"'
+    result = subprocess.check_output(command, shell=True)
     return result.decode('utf-8').strip().split('\n')
 
 def main():
