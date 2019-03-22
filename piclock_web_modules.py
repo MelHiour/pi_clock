@@ -69,10 +69,9 @@ def service_control(service, action):
         return 'Only up/down are supported'
 
 def service_stats():
-    result = subprocess.run('systemctl status piclock_*.service | grep ".*\.service -\|Active"',
-                            shell=True,
-                            stdout=subprocess.PIPE)
-    return result.stdout.decode('utf-8').split('\n')
+    result = subprocess.check_output('systemctl status piclock_*.service | grep ".*\.service -\|Active"',
+                                    shell=True)
+    return result.decode('utf-8').strip().split('\n')
 
 def main():
     db_to_graph('/root/temp-data/temp-data.db',
