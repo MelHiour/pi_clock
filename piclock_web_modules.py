@@ -12,12 +12,14 @@ def get_db_data(db_path, table_name, from_date, until_date):
         result = cursor.fetchall()
     return result
 
-def graph_from_data(data, dots, minor_labels):
+def graph_from_data(data, dots, minor_labels, air):
     time = []
     inside_temp = []
     humidity = []
     pressure = []
     outside_temp = []
+    co2 = []
+    tvoc = []
 
     for item in data:
         time.append(item[0].split('.')[0])
@@ -28,6 +30,8 @@ def graph_from_data(data, dots, minor_labels):
             outside_temp.append(None)
         else:
             outside_temp.append(float(item[4]))
+        co2.append(float(item[5]))
+        tvoc.append(float(item[6]))
 
     line_chart = pygal.Line(x_label_rotation=-45,
                             interpolate='hermite',
@@ -44,12 +48,14 @@ def graph_from_data(data, dots, minor_labels):
     line_chart.add('humidity', humidity)
     line_chart.add('pressure+700', pressure)
     line_chart.add('outside_temp', outside_temp)
-
+    if air:
+        line_chart.add('CO2', co2)
+        line_chart.add('TVOC', tvoc)
     return line_chart.render_response()
 
-def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_labels = True):
+def db_to_graph(db_path, table_name, from_date, until_date, dots = True, minor_labels = True, air = False):
     data = get_db_data(db_path, table_name, from_date, until_date)
-    return graph_from_data(data, dots, minor_labels)
+    return graph_from_data(data, dots, minor_labels, air)
 
 def service_control(service, action):
     manager = SystemdManager()
