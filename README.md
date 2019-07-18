@@ -3,7 +3,7 @@ Just clock, home weather station and air quality monitoring tool based on Raspbe
 
 ![device](../master/examples/animated.GIF)
 
-# Web forms 
+# Web forms
 ![web_form](../master/examples/web_form_example.png)
 ![web_form_stats](../master/examples/web_form_example_stats.png)
 ![web_form_systyemd](../master/examples/web_form_example_systemd.png)
