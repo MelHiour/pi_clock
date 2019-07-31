@@ -7,3 +7,4 @@ Flask-Caching==1.4.0
 python3-memcached==1.51
 sysdmanager==0.1.1
 pygal==2.4.0
+requests==2.21.0
